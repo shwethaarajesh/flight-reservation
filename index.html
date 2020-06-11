@@ -1,0 +1,76 @@
+<!--First page get details of name blah blah and try to book flight-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+  <h1> User login</h1>
+  <!--We send it back via POST note that the action is /trial-->
+  <form action="/login" method="POST">
+    <div class="form-group">
+        <label>Mobile number</label>
+        <input type="text" class="form-control" name="mob" pattern="[0-9]{10}">
+    </div>
+    <div class="form-group">
+        <label>password</label>
+        <input type="password" class="form-control" name="password" >
+    </div>
+    <button type="submit">Submit</button>
+</form>
+<h1> USER SIGNUP </h1>
+  <script type="text/javascript">
+
+    function checkForm(form)
+    {
+      if(form.password.value != form.cpassword.value) {
+        alert("Password and confirm password do not match");
+
+        return false;
+      }
+      return true;
+    }
+  
+  </script>
+  
+  <!--We send it back via POST note that the action is /trial-->
+  <form action="/signup" method="POST" onsubmit= "return checkForm(this);"">
+    <div class="form-group">
+        <label>Enter your name</label>
+        <input type="text" class="form-control" name="name" >
+    </div>
+    <div class="form-group">
+        <label>Mobile number</label>
+        <input type="text" class="form-control" name="mob" pattern="[0-9]{10}">
+    </div>
+    <div class="form-group">
+        <label>Age</label>
+        <input type="number" class="form-control" name="age"pattern="{10}">
+    </div>
+    <div class="form-group">
+        <label>Gender</label>
+        <input type="radio" class="form-control" name="gender" id="male">
+        <label for="male">Male</label><br>
+        <input type="radio" class="form-control" name="gender" id="female">
+        <label for="female">female</label><br>
+        <input type="radio" class="form-control" name="gender" id="other">
+        <label for="other">Other</label><br>
+    </div>
+    <div class="form-group">
+        <label>email</label>
+        <input type="email" class="form-control" name="email">
+    </div>
+    <div class="form-group">
+        <label>Enter password</label>
+        <input type="password" class="form-control" name="password" >
+    </div>
+    <div class="form-group">
+        <label>Confirm password</label>
+        <input type="password" class="form-control" name="cpassword" >
+    </div>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
