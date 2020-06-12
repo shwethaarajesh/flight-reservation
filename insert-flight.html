@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+  <h1> Enter flight details </h1>
+  <form action="/newflight" method="POST">
+    
+    <div class="form-group">
+      <label>Enter Flight name </label>
+      <input type="text" class="form-control" name="name" required="true">
+  </div>
+  <div class="form-group">
+    <label>Enter Flight id </label>
+    <input type="text" class="form-control" name="fid" required="true" >
+</div>
+<div class="form-group">
+  <label>Number of seats</label>
+  <input type="number" class="form-control" name="seats" >
+</div>
+  
+<div class="form-group">
+  <label>Number of rows</label>
+  <input type="text" class="form-control" name="rows">
+</div>
+<div class="form-group">
+<select id="from" name="from">
+  <option value="coimbatore">Coimbatore</option>
+  <option value="chennai">Chennai</option>
+  <option value="kochi">Kochi</option>
+  <option value="mumbai">Mumbai</option>
+</select>
+</div>
+
+<div class="form-group">
+  <select id="to" name="to">
+    <option value="coimbatore">Coimbatore</option>
+    <option value="chennai">Chennai</option>
+    <option value="kochi">Kochi</option>
+    <option value="mumbai">Mumbai</option>
+  </select>
+  </div>
+  <button type="submit">Submit</button> 
+  </form>
+</body>
+</html>

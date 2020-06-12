@@ -6,10 +6,10 @@ var res = new mongoose.Schema({
     required: 'This field is required!'
     },
     seats: {
-    type: [Number]
+    type: Number
     },
     datetravel:{
-    tyoe: Date
+    type: Date
     }
     });
      

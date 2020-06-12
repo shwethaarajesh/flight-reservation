@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+  <h1> Book Flight </h1>
+  <form action="/book" method="POST">
+    
+    <div class="form-group">
+      <label>Enter your name </label>
+      <input type="text" class="form-control" name="name" >
+  </div>
+  <div class="form-group">
+    <label>Mobile number</label>
+    <input type="text" class="form-control" name="mob" pattern="[0-9]{10}">
+</div>
+
+<div class="form-group">
+  <label>Number of seats</label>
+  <input type="number" class="form-control" name="seats" >
+</div>
+<div class="form-group">
+<select id="from" name="from">
+  <option value="coimbatore">Coimbatore</option>
+  <option value="chennai">Chennai</option>
+  <option value="kochi">Kochi</option>
+  <option value="mumbai">Mumbai</option>
+</select>
+</div>
+
+<div class="form-group">
+  <select id="to" name="to">
+    <option value="coimbatore">Coimbatore</option>
+    <option value="chennai">Chennai</option>
+    <option value="kochi">Kochi</option>
+    <option value="mumbai">Mumbai</option>
+  </select>
+  </div>
+  <div class="form-group">
+      <label>Date</label>
+      <input type="date" class="form-control" name="date" >
+  </div>
+  <button type="submit">Submit</button> 
+  </form>
+</body>
+</html>

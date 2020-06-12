@@ -9,11 +9,14 @@ const exphb = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 
+
 flights= require('./modules/flight.model');
 bookflight=require('./modules/book.model');
 reservedflight=require('./modules/reserved.model');
 userinfo=require('./modules/user.model');
 const log = mongoose.model('Userschema');
+const flight=mongoose.model('Flightschema');
+const reserve=mongoose.model('reservedschema');
 app.use(bodyparser.urlencoded({
     extended: true
     }));
@@ -28,27 +31,18 @@ app.post('/login', (req, res) => {
     var cursor= log.find({ mob: req.body.mob, password : req.body.password },(err, result)=>{
         if(!err & result!=''){
             console.log(req.body)
-            res.redirect('/workplease');
+            res.redirect('/options');
         }
         else {
             console.log('Error in retrieving employee list '+err+result);
             console.log(result);
             res.redirect('/');
         }
-    });/*
-    var cursor= log.find({ mob: req.body.mob, password : req.body.password },(err, result)=>{
-        if(!err & result!=''){
-            console.log(req.body)
-            res.redirect('/workplease');
-        }
-        else {
-            console.log('Error in retrieving employee list '+err+result);
-            console.log(result.name);
-            res.redirect('/');
-        }
-    });*/
+    });
 });
-
+app.get('/signup', function (req, res,html) {
+  res.sendFile(path.join(__dirname+'/signup.html'));
+ });
 //THIS IS IF THEY SIGNED UP
   app.post('/signup', (req, res) => {
     //WE ARE REDIRECTING TO A NEW PAGE /WORKPLEASE
@@ -65,83 +59,84 @@ function insertRecord(req,res){
     sign.password=req.body.password;
     sign.save((err,doc)=> {
         if(!err)
-            res.redirect('/workplease');
+            res.redirect('/options');
         else
             console.log('Error during record insertion '+err);
     });
 }
+console.log('Hi');
 //THIS GETS THE NEW WORKPLEASE PAGE AND IS REDIRECTED TO WORK.HTML
-  app.get('/workplease',(req,res)=>{
-    res.sendFile(__dirname + '/work.html')
+app.get('/options',(req,res)=>{
+  res.sendFile(__dirname + '/options.html')
+})
+app.get('/bookflight',(req,res,html)=>{
+  res.sendFile(__dirname + '/bookflight.html')
 })
 //THIS GETS IT BACK FROM WORK AND PRINTS
-app.post('/try', (req, res) => {
+app.post('/book', (req, res) => {
     console.log(req.body)
+    res.redirect('/addflight');
   })
-/*
-    app.use('/movie', movies);
-    app.use('/city',city);
-    app.use('/theatre',theatre);
-    app.use('/showtime',showtime);
-    app.use('/assign',assign);
-    app.use('/book',book);
+  app.get('/addflight',(req,res,html)=>{
+    res.sendFile(__dirname + '/insert-flight.html')
+})
+app.post('/newflight', (req, res) => {
+  console.log(req.body)
+  insertFlight(req,res);
+})
+function insertFlight(req,res){
+  var nf = new flight();
 
-    
-
-//API to accept details of movie screen
-app.post('/screens', async (req, res) => {
-
-  try {
-    let screen = new Screen(req.body);
-    await screen.save();
-    res.send();
-  } catch (e) {
-      res.status(400).send(e);
+  nf.name=req.body.name;
+  nf.flightid=req.body.fid;
+  nf.seats= req.body.seats;
+  nf.rows=req.body.rows;
+  nf.from= req.body.from;
+  nf.to=req.body.to;
+  nf.save((err,doc)=> {
+      if(!err)
+          res.send('Successful')
+          //res.redirect('/bookflight');
+      else
+          console.log('Error during record insertion '+err);
   }
-
-});
-
-//API to reserve tickets for given seats in a given screen
-app.post('/screens/:screen_name/reserve', async (req, res) => {
-
-  try {
-    let screenName = req.params.screen_name;
-    let seats = req.body.seats;
-    await isAvailable(screenName, seats);
-    res.send("Reservation is successful");
-  } catch (e) {
-      res.status(400).send(e);
-  }
-
-});
-
-/*
-API to get the available seats for a given screen
-And also
-API to get information of available tickets at a given position
-Same endpoint will be used for both. We will differentiate from queries.
-
-app.get('/screens/:screen_name/seats', async (req, res) => {
-
-  try {
-    let query = req.query;
-    if(query.status && query.status === 'unreserved'){//to get the available seats for a given screen
-      let unreservedSeats = await getUnreservedSeats(req.params.screen_name);
-      res.send(unreservedSeats);
-    }else if (query.numSeats && query.choice) {//to get information of available tickets at a given position
-      let seatOfChoice = await getSeatAvailableAtChoice(req.params.screen_name, query.numSeats, query.choice);
-      res.send(seatOfChoice);
-    }else {//return error 404 if any other endpoint is used.
-      return res.status(404).send('Page not found');
+  );
+  var c1= reserve.find({ flightid: req.body.fid },(err, result)=>{
+    if(!err & result!=''){
+      
+        console.log('Already present');
+ 
     }
-  } catch (e) {
-      res.status(400).send(e);
-  }
-
+    else if(!err)
+    {
+      insertReserve(req,res);
+    }
+    else {
+        console.log('Error in retrieving employee list '+err+result);
+        console.log(result);
+        res.redirect('/');
+    }
 });
-
-*/
+}
+function insertReserve(req,res)
+{
+  var nr= new reserve();
+  nr.flightid=req.body.fid;
+  nr.seats= req.body.seats;
+  nr.rows=req.body.rows;
+  nr.from= req.body.from;
+  nr.to=req.body.to;
+  nr.save((err,doc)=> {
+      if(!err)
+          console.log('hi');
+          //res.redirect('/bookflight');
+      else
+          console.log('Error during record insertion '+err);
+  }
+  );
+}
 app.listen(3000, function() {
     console.log('listening on 3000')
   })
+ 
 module.exports = {app};
