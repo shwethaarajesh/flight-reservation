@@ -13,7 +13,7 @@ reservedflight=require('./modules/reserved.model');
 userinfo=require('./modules/user.model');
 
 const flight=mongoose.model('Flightschema');
-const reserve=mongoose.model('reservedschema');
+const reserve=mongoose.model('Reservedschema');
 
 app.use('/',bookingcontroller);
 app.get('/options',(req,res)=>{

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Flight Name &nbsp; &nbsp;&nbsp; &nbsp;</th>
+                <th>Flight ID &nbsp; &nbsp;&nbsp; &nbsp;</th>
+                <th>From  &nbsp; &nbsp;&nbsp; &nbsp;</th>
+                <th>To &nbsp; &nbsp;&nbsp; &nbsp;</th>
+            </tr>
+        </thead>
+        <br><br>
+        <tbody>
+            <tr>
+                <% for(var i=0; i<data.length; i++) {%>
+                <tr>
+                <td><%= data[i].name %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].flightid %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].from %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].to %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            </tr>
+                 <% } %>
+    
+    
+    
+    
+    
+            
+            
+        </tbody>
+    </table>
+    <br><br>
+    <h1> Book Flight </h1>
+    <form action="/book" method="POST">
+      
+      <div class="form-group">
+        <label>Enter your name </label>
+        <input type="text" class="form-control" name="name" >
+    </div>
+    <div class="form-group">
+      <label>Mobile number</label>
+      <input type="text" class="form-control" name="mob" pattern="[0-9]{10}">
+  </div>
+  <div class="form-group">
+    <label>Enter the flightid</label>
+    <input type="text" class="form-control" name="flightid" >
+</div>
+  <div class="form-group">
+    <label>Number of seats</label>
+    <input type="number" class="form-control" name="seats" >
+  </div>
+    <div class="form-group">
+        <label>Date</label>
+        <input type="date" class="form-control" name="date" >
+    </div>
+    <button type="submit">Submit</button> 
+    </form>
+</body>
+</html>

@@ -23,7 +23,7 @@ var booker = new mongoose.Schema({
     type: String
     },
     datetravel:{
-    tyoe: Date
+    type: Date
     }
     });
      

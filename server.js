@@ -14,6 +14,7 @@ var usercontroller= require('./usercontroller');
 app.use(bodyparser.urlencoded({
   extended: true
   }));
+
 app.use(bodyparser.json({})); // parse application/json
 /*
 flights= require('./modules/flight.model');
@@ -142,8 +143,12 @@ function insertReserve(req,res)
   }
   );
 }*/
+app.engine('html', require('ejs').renderFile);
+app.set('views', __dirname + '/views'); // general config
+app.set('view engine', 'html');
 app.listen(3000, function() {
     console.log('listening on 3000')
   })
+  
  app.use('/',usercontroller);
 module.exports = {app};

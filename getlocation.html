@@ -1,0 +1,33 @@
+<!--First page get details of name blah blah and try to book flight-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MY APP</title>
+</head>
+<body>
+  <h1> Enter to and from location</h1>
+  <!--We send it back via POST note that the action is /trial-->
+  <form action="/location" method="POST">
+    <div class="form-group">
+    <select id="from" name="from">
+      <option value="coimbatore">Coimbatore</option>
+      <option value="chennai">Chennai</option>
+      <option value="kochi">Kochi</option>
+      <option value="mumbai">Mumbai</option>
+    </select>
+    </div>
+    
+    <div class="form-group">
+      <select id="to" name="to">
+        <option value="coimbatore">Coimbatore</option>
+        <option value="chennai">Chennai</option>
+        <option value="kochi">Kochi</option>
+        <option value="mumbai">Mumbai</option>
+      </select>
+      </div>
+    <button type="submit">Submit</button>
+</form>
+
+</body>
+</html>
