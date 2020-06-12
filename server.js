@@ -8,8 +8,14 @@ const path = require('path');
 const exphb = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+var usercontroller= require('./usercontroller');
 
 
+app.use(bodyparser.urlencoded({
+  extended: true
+  }));
+app.use(bodyparser.json({})); // parse application/json
+/*
 flights= require('./modules/flight.model');
 bookflight=require('./modules/book.model');
 reservedflight=require('./modules/reserved.model');
@@ -22,6 +28,7 @@ app.use(bodyparser.urlencoded({
     }));
 app.use(bodyparser.json({})); // parse application/json
 //THIS REDIRECTS IT TO OUR HOME PAGE WHICH IS INDEX.HTML
+
 app.get('/',(req,res)=>{
     res.sendFile(__dirname + '/index.html')
 })
@@ -134,9 +141,9 @@ function insertReserve(req,res)
           console.log('Error during record insertion '+err);
   }
   );
-}
+}*/
 app.listen(3000, function() {
     console.log('listening on 3000')
   })
- 
+ app.use('/',usercontroller);
 module.exports = {app};
