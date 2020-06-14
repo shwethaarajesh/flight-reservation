@@ -5,8 +5,11 @@ const path = require('path');
 const exphb = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
-
+var reschedulecontroller=require('./reschedulecontroller');
+var cancelcontroller=require('./cancelcontroller');
 var bookingcontroller= require('./bookingcontroller');
+var displaycontroller= require('./displaybookedcontroller');
+var userdisplaycontroller= require('./userdetailscontroller');
 flights= require('./modules/flight.model');
 bookflight=require('./modules/book.model');
 reservedflight=require('./modules/reserved.model');
@@ -16,24 +19,22 @@ const flight=mongoose.model('Flightschema');
 const reserve=mongoose.model('Reservedschema');
 
 app.use('/',bookingcontroller);
-app.get('/options',(req,res)=>{
-  res.sendFile(__dirname + '/options.html')
-})/*
-app.get('/bookflight',(req,res,html)=>{
-  res.sendFile(__dirname + '/bookflight.html')
+app.use('/',displaycontroller);
+app.use('/',userdisplaycontroller);
+app.use('/',cancelcontroller);
+app.use('/',reschedulecontroller);
+app.get('/options',(req,res,html)=>{
+  res.render('options');
 })
-//THIS GETS IT BACK FROM WORK AND PRINTS
-app.post('/book', (req, res) => {
-    console.log(req.body)
-   // res.redirect('/addflight');
-  })
-  */
   app.get('/addflight',(req,res,html)=>{
-    res.sendFile(__dirname + '/insert-flight.html')
+    sess=req.session;
+   console.log(sess.mob,'works');
+   res.render('insert-flight')
 })
 app.post('/newflight', (req, res) => {
   console.log(req.body)
   insertFlight(req,res);
+  res.redirect('/options');
 })
 function insertFlight(req,res){
   var nf = new flight();
@@ -46,47 +47,11 @@ function insertFlight(req,res){
   nf.to=req.body.to;
   nf.save((err,doc)=> {
       if(!err)
-          res.send('Successful')
+          console.log(' Flight has been inserted successfully')
       else
-          console.log('Error during record insertion '+err);
+          console.log('Error during flight insertion '+err);
   }
   );
-  /*
-  var c1= reserve.find({ flightid: req.body.fid },(err, result)=>{
-    if(!err & result!=''){
-      
-        console.log('Already present');
- 
-    }
-    else if(!err)
-    {
-      insertReserve(req,res);
-    }
-    else {
-        console.log('Error in retrieving employee list '+err+result);
-        console.log(result);
-        res.redirect('/');
-    }
-});*/
 }
 
-/*
-function insertReserve(req,res)
-{
-  var nr= new reserve();
-  nr.flightid=req.body.fid;
-  nr.seats= req.body.seats;
-  nr.rows=req.body.rows;
-  nr.from= req.body.from;
-  nr.to=req.body.to;
-  nr.save((err,doc)=> {
-      if(!err)
-          console.log('hi');
-          //res.redirect('/bookflight');
-      else
-          console.log('Error during record insertion '+err);
-  }
-  );
-}
-*/
   module.exports = app;

@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="table-responsive" data-pattern="priority-columns">
+    <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th data-priority="1"> Name </th>
+            <th data-priority="2">Mobile Number </th>
+            <th data-priority="3">Age </th>
+            <th data-priority="4">Gender </th>
+            <th data-priority="5">Email  </th>
+        </tr>
+    </thead>
+    <br><br>
+    <tbody>
+        <tr>
+            <% for(var i=0; i<data.length; i++) {%>
+            <tr>
+                <td><%= data[i].name %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].mob %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].age %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].gender %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+                <td><%= data[i].email %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+        </tr>
+             <% } %>
+
+    </tbody>
+</table>
+</div><!--end of .table-responsive-->
+</div>
+</div>
+</div>
+    <a href="/options">Go back</a>
+</body>
+</html>

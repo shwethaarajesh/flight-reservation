@@ -6,45 +6,47 @@ const exphb = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
 
+const session = require('express-session');
 var flightcontroller= require('./flightcontroller');
 flights= require('./modules/flight.model');
 bookflight=require('./modules/book.model');
 reservedflight=require('./modules/reserved.model');
 userinfo=require('./modules/user.model');
 const log = mongoose.model('Userschema');
-/*
-app.use(bodyparser.urlencoded({
-    extended: true
-    }));
-app.use(bodyparser.json({})); // parse application/json
-//THIS REDIRECTS IT TO OUR HOME PAGE WHICH IS INDEX.HTML
-*/
+var sess;
 app.get('/',(req,res)=>{
-    res.sendFile(__dirname + '/index.html')
+  sess=req.session;
+  sess.mob;
+  res.render('index');
+
 })
-//IN POST WE USE /TRIAL SINCE THAT'S THE FORM ACTION IN IN INDEX
+
 app.post('/login', (req, res) => {
-    //WE ARE REDIRECTING TO A NEW PAGE /WORKPLEASE
+    sess=req.session;
     var cursor= log.find({ mob: req.body.mob, password : req.body.password },(err, result)=>{
-        if(!err & result!=''){
-            console.log(req.body)
-            res.redirect('/options');
-        }
-        else {
-            console.log('Error in retrieving employee list '+err+result);
-            console.log(result);
-            res.redirect('/');
-        }
+    if(!err & result!=''){
+        //console.log(req.body)
+        sess.mob=req.body.mob;
+        //console.log(sess.mob);
+        res.redirect('/options');
+    }
+    else if(err)
+    {
+      console.log('Error during login '+err);
+    }
+    else {
+        console.log('No such user to login');
+        //console.log(result);
+        res.redirect('/');
+    }
     });
 });
 app.get('/signup', function (req, res,html) {
-  res.sendFile(path.join(__dirname+'/signup.html'));
+  res.render('signup');
  });
-//THIS IS IF THEY SIGNED UP
-  app.post('/signup', (req, res) => {
-    //WE ARE REDIRECTING TO A NEW PAGE /WORKPLEASE
+
+app.post('/signup', (req, res) => {
     insertRecord(req,res);
-    //console.log('Yes');
   })
 function insertRecord(req,res){
     var sign = new log();
@@ -58,82 +60,10 @@ function insertRecord(req,res){
         if(!err)
             res.redirect('/options');
         else
-            console.log('Error during record insertion '+err);
+            console.log('Error during record insertion for signup'+err);
     });
 }
 console.log('Hi');
 app.use('/',flightcontroller);
-//THIS GETS THE NEW WORKPLEASE PAGE AND IS REDIRECTED TO WORK.HTML
-/*
 
-app.get('/options',(req,res)=>{
-  res.sendFile(__dirname + '/options.html')
-})
-app.get('/bookflight',(req,res,html)=>{
-  res.sendFile(__dirname + '/bookflight.html')
-})
-//THIS GETS IT BACK FROM WORK AND PRINTS
-app.post('/book', (req, res) => {
-    console.log(req.body)
-    res.redirect('/addflight');
-  })
-  app.get('/addflight',(req,res,html)=>{
-    res.sendFile(__dirname + '/insert-flight.html')
-})
-app.post('/newflight', (req, res) => {
-  console.log(req.body)
-  insertFlight(req,res);
-})
-function insertFlight(req,res){
-  var nf = new flight();
-
-  nf.name=req.body.name;
-  nf.flightid=req.body.fid;
-  nf.seats= req.body.seats;
-  nf.rows=req.body.rows;
-  nf.from= req.body.from;
-  nf.to=req.body.to;
-  nf.save((err,doc)=> {
-      if(!err)
-          res.send('Successful')
-          //res.redirect('/bookflight');
-      else
-          console.log('Error during record insertion '+err);
-  }
-  );
-  var c1= reserve.find({ flightid: req.body.fid },(err, result)=>{
-    if(!err & result!=''){
-      
-        console.log('Already present');
- 
-    }
-    else if(!err)
-    {
-      insertReserve(req,res);
-    }
-    else {
-        console.log('Error in retrieving employee list '+err+result);
-        console.log(result);
-        res.redirect('/');
-    }
-});
-}
-function insertReserve(req,res)
-{
-  var nr= new reserve();
-  nr.flightid=req.body.fid;
-  nr.seats= req.body.seats;
-  nr.rows=req.body.rows;
-  nr.from= req.body.from;
-  nr.to=req.body.to;
-  nr.save((err,doc)=> {
-      if(!err)
-          console.log('hi');
-          //res.redirect('/bookflight');
-      else
-          console.log('Error during record insertion '+err);
-  }
-  );
-}*/
-
-  module.exports = app;
+module.exports = app;

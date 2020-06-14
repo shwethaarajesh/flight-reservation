@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  
+  <br>
+  <br>
+  <br>
+  
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6 main">
+
+  <form action="/signup" method="POST" onsubmit= "return checkForm(this);">
+    
+    <h1>User Signup</h1>
+    
+    <input class="box" type="text" name="name" 
+    placeholder="Your name" required /><br>
+    <input class="box" type="text" name="mob" pattern="[0-9]{10}"
+    placeholder="Mobile Number" required /><br>
+    <input class="box" type="number" name="age" 
+    placeholder="Age" min="13" max="120" required /><br>
+    <label>Gender</label>
+    
+    <input type="radio"  name="gender" id="male" value="male">
+    <label for="male">Male</label><br>
+    <input type="radio" name="gender" id="female" value="female">
+    <label for="female">female</label><br>
+    <input type="radio" name="gender" id="other" value="other">
+    <label for="other">Other</label><br>
+
+    <input class="box" type="email" name="email"
+    placeholder="Email ID" required /><br>
+<input class="box" type="password"  name="password"
+    placeholder="Password " required /><br>
+    <input class="box" type="password"  name="cpassword"
+        placeholder="Confirm Password " required /><br>
+    
+
+    
+    <input type="submit" id="submitDetails"
+    name="submitDetails" value="Signup" /><br>
+ 
+  </form>
+
+</div>
+<script type="text/javascript">
+
+  function checkForm(form)
+  {
+    if(form.password.value != form.cpassword.value) {
+      alert("Password and confirm password do not match");
+
+      return false;
+    }
+    return true;
+  }
+
+</script>
+
+
+<div class="col-md-3">
+</div>
+
+</div>
+</div>
+</body>
+</html>   
+
+  

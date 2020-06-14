@@ -2,20 +2,32 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>MY APP</title>
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
 </head>
 <body>
-    <table class="table table-striped">
-        <thead>
-            <tr>
-                <th>Flight Name &nbsp; &nbsp;&nbsp; &nbsp;</th>
-                <th>Flight ID &nbsp; &nbsp;&nbsp; &nbsp;</th>
-                <th>From  &nbsp; &nbsp;&nbsp; &nbsp;</th>
-                <th>To &nbsp; &nbsp;&nbsp; &nbsp;</th>
-            </tr>
-        </thead>
-        <br><br>
-        <tbody>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-xs-12">
+        <div class="table-responsive" data-pattern="priority-columns">
+<table class="table table-bordered table-hover">
+<thead>
+    <tr>
+        <th data-priority="1">Flight Name </th>
+        <th data-priority="2">Flight ID </th>
+        <th data-priority="3">From  </th>
+        <th data-priority="4">To </th>
+    </tr>
+</thead>
+<br><br>
+<tbody>
+
+
             <tr>
                 <% for(var i=0; i<data.length; i++) {%>
                 <tr>
@@ -34,31 +46,92 @@
             
         </tbody>
     </table>
-    <br><br>
-    <h1> Book Flight </h1>
-    <form action="/book" method="POST">
-      
-      <div class="form-group">
-        <label>Enter your name </label>
-        <input type="text" class="form-control" name="name" >
-    </div>
-    <div class="form-group">
-      <label>Mobile number</label>
-      <input type="text" class="form-control" name="mob" pattern="[0-9]{10}">
+  </div><!--end of .table-responsive-->
   </div>
-  <div class="form-group">
-    <label>Enter the flightid</label>
-    <input type="text" class="form-control" name="flightid" >
+  </div>
+  </div>
+
+
+  
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-6 main">
+
+<form action="/book" method="POST" onsubmit= "return checkForm(this);">
+  
+  <h1>Book a flight</h1>
+  <input class="box" type="text" name="name" 
+  placeholder="Your name" required /><br>
+
+
+  <input class="box" type="text" name="flightid" 
+  placeholder="Flight id" required /><br>
+  
+<input class="box" type="number"  name="seats"
+placeholder="Number of seats " min="1" max="10" required /><br>
+
+<input class="box" type="date"  name="date"
+  placeholder="Date of travel " required /><br>
+   
+  <input type="submit" id="submitDetails"
+  name="submitDetails" value="Book Now" /><br>
+
+</form>
+
 </div>
-  <div class="form-group">
-    <label>Number of seats</label>
-    <input type="number" class="form-control" name="seats" >
-  </div>
-    <div class="form-group">
-        <label>Date</label>
-        <input type="date" class="form-control" name="date" >
-    </div>
-    <button type="submit">Submit</button> 
-    </form>
+
+
+<div class="col-md-3">
+</div>
+
+</div>
+</div>
+  
+<script type="text/javascript">
+var today = new Date();
+var dd = today.getDate();
+
+var mm = today.getMonth()+1; 
+var yyyy = today.getFullYear();
+if(dd<10) 
+{
+    dd='0'+dd;
+} 
+
+if(mm<10) 
+{
+    mm='0'+mm;
+} 
+
+today = yyyy+'-'+mm+'-'+dd;
+  function checkForm(form)
+  {
+    /*
+    var date1=today.getTime();
+    var date2=form.date.value.getTime();
+    alert(date1+date2);
+const diffTime = Math.abs(date1-date2);
+const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24)); */
+    if(form.date.value < today) {
+      alert("Cannot input past date ");
+
+      return false;
+    }
+    else if(diffDays>100)
+    {
+      alert("Can only book for dates in next 3 months ");
+
+return false;
+    }
+    alert("written successfully "+diffDays);
+    return true;
+  }
+
+</script>
+
+ 
 </body>
 </html>

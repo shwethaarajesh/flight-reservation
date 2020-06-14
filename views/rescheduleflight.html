@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="table-responsive" data-pattern="priority-columns">
+    <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th data-priority="1">Booked Name </th>
+            <th data-priority="2">Flight ID </th>
+            <th data-priority="3">Number of seats </th>
+            <th data-priority="4">Date of travel </th>
+            <th data-priority="5">From  </th>
+            <th data-priority="6">To </th>
+        </tr>
+    </thead>
+    <br><br>
+    <tbody>
+        <tr>
+            <% for(var i=0; i<data.length; i++) {%>
+            <tr>
+            <td><%= data[i].name %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].flightid %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].nseats %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].datetravel %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].from %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].to %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+        </tr>
+             <% } %>
+
+    </tbody>
+</table>
+</div><!--end of .table-responsive-->
+</div>
+</div>
+</div>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6 main">
+
+  <form action="/reschedule" method="POST">
+    
+    <h1> Enter the flight to be rescheduled</h1>
+    
+
+    <input class="box" type="text" name="fid" 
+    placeholder="Flight id" required /><br>
+
+<input class="box" type="date"  name="date"
+    placeholder="Previous Reservation Date " required /><br>
+    
+<input class="box" type="date"  name="ndate"
+placeholder="New Reservation Date " required /><br>
+     
+    <input type="submit" id="submitDetails"
+    name="submitDetails" value="Reschedule" /><br>
+ 
+  </form>
+
+</div>
+
+<div class="col-md-3">
+</div>
+
+</div>
+</div>
+    
+ 
+   
+</body>
+</html>
+
+<!--
+    <br>
+    <h1> Enter the flight to be rescheduled</h1>
+    <form action="/reschedule" method="POST">
+    <div class="form-group">
+        <label>flightid</label>
+        <input type="text" class="form-control" name="fid" >
+    </div>
+    <div class="form-group">
+        <label>Previous Reservation Date</label>
+        <input type="date" class="form-control" name="date">
+    </div>
+    <div class="form-group">
+        <label>New Reservation Date</label>
+        <input type="date" class="form-control" name="ndate">
+    </div>
+    
+    <button type="submit">Submit</button>
+    </form>
+</body>
+</html>
+-->
