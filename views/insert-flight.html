@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  
+<div class="container">
+  <div class="row">
+      <div class="col-md-3">
+
+      </div>
+      <div class="col-md-6 main">
+
+<form action="/newflight" method="POST">
+  
+  <h1> Enter the flight details</h1>
+  <input class="box" type="text" name="name" 
+  placeholder="Flight Name" required /><br>
+
+
+  <input class="box" type="text" name="fid" 
+  placeholder="Flight id" required /><br>
+  
+<input class="box" type="number"  name="seats"
+placeholder="Number of seats " min="1" max="50" required /><br>
+
+<input class="box" type="number"  name="rows"
+placeholder="Number of rows " min="1" max="10" required /><br>
+<select id="from" name="from" class="box">
+  <option value="coimbatore">Coimbatore</option>
+  <option value="chennai">Chennai</option>
+  <option value="kochi">Kochi</option>
+  <option value="mumbai">Mumbai</option>
+</select>
+<select id="to" name="to" class="box">
+  <option value="coimbatore">Coimbatore</option>
+  <option value="chennai">Chennai</option>
+  <option value="kochi">Kochi</option>
+  <option value="mumbai">Mumbai</option>
+</select>
+
+   
+  <input type="submit" id="submitDetails"
+  name="submitDetails" value="Add Flight" /><br>
+
+</form>
+
+</div>
+
+
+<div class="col-md-3">
+</div>
+
+</div>
+</div>
+  
+
+ 
+</body>
+</html>
+  <h1> Enter flight details </h1>
+  <form action="/newflight" method="POST">
+    
+    <div class="form-group">
+      <label>Enter Flight name </label>
+      <input type="text" class="form-control" name="name" required="true">
+  </div>
+  <div class="form-group">
+    <label>Enter Flight id </label>
+    <input type="text" class="form-control" name="fid" required="true" >
+</div>
+<div class="form-group">
+  <label>Number of seats</label>
+  <input type="number" class="form-control" name="seats" >
+</div>
+  
+<div class="form-group">
+  <label>Number of rows</label>
+  <input type="text" class="form-control" name="rows">
+</div>
+<div class="form-group">
+<select id="from" name="from">
+  <option value="coimbatore">Coimbatore</option>
+  <option value="chennai">Chennai</option>
+  <option value="kochi">Kochi</option>
+  <option value="mumbai">Mumbai</option>
+</select>
+</div>
+
+<div class="form-group">
+  <select id="to" name="to">
+    <option value="coimbatore">Coimbatore</option>
+    <option value="chennai">Chennai</option>
+    <option value="kochi">Kochi</option>
+    <option value="mumbai">Mumbai</option>
+  </select>
+  </div>
+  <button type="submit">Submit</button> 
+  </form>
+</body>
+</html>

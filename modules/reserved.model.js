@@ -2,15 +2,14 @@
 const mongoose = require('mongoose');
 var res = new mongoose.Schema({
     flightid: {
-    type: String,
-    required: 'This field is required!'
+    type: String
     },
     seats: {
-    type: [Number]
+    type: Number
     },
     datetravel:{
-    tyoe: Date
+    type: Date
     }
     });
      
-    mongoose.model('reservedschema', res);
+    mongoose.model('Reservedschema', res);

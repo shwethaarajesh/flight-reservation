@@ -1,0 +1,56 @@
+<!--First page get details of name blah blah and try to book flight-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+  <br>
+  <br>
+  <br>
+  
+  <div class="container">
+    <div class="row">
+        <div class="col-md-3">
+
+        </div>
+        <div class="col-md-6 main">
+
+  <form action="/location" method="POST">
+    
+    <h1>Enter to and from location</h1>
+    <select id="from" name="from" class="box">
+      <option value="coimbatore">Coimbatore</option>
+      <option value="chennai">Chennai</option>
+      <option value="kochi">Kochi</option>
+      <option value="mumbai">Mumbai</option>
+    </select>
+    <select id="to" name="to" class="box">
+      <option value="coimbatore">Coimbatore</option>
+      <option value="chennai">Chennai</option>
+      <option value="kochi">Kochi</option>
+      <option value="mumbai">Mumbai</option>
+    </select>
+    
+
+    <input type="submit" id="submitDetails"
+    name="submitDetails" value="Get all flights" /><br>
+ 
+  </form>
+
+</div>
+
+
+<div class="col-md-3">
+</div>
+
+</div>
+</div>
+</body>
+</html>   
