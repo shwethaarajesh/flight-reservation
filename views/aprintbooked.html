@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Airline Reservation System  </title>
+  
+  <link rel="stylesheet"
+  href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="table-responsive" data-pattern="priority-columns">
+    <table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th data-priority="1">Booked Name </th>
+            <th data-priority="2">Flight ID </th>
+            <th data-priority="3">Number of seats </th>
+            <th data-priority="4">Date of travel </th>
+            <th data-priority="5">From  </th>
+            <th data-priority="6">To </th>
+        </tr>
+    </thead>
+    <br><br>
+    <tbody>
+        <tr>
+            <% for(var i=0; i<data.length; i++) {%>
+            <tr>
+            <td><%= data[i].name %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].flightid %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].nseats %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].datetravel %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].from %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+            <td><%= data[i].to %> &nbsp; &nbsp;&nbsp; &nbsp;</td>
+        </tr>
+             <% } %>
+
+    </tbody>
+</table>
+</div><!--end of .table-responsive-->
+</div>
+</div>
+</div>
+    <a href="/adminoptions">Go back</a>
+</body>
+</html>

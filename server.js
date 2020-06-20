@@ -10,6 +10,8 @@ const path = require('path');
 const exphb = require('express-handlebars');
 const mongoose = require('mongoose');
 const bodyparser = require('body-parser');
+
+var logincontroller= require('./logincontroller');
 var usercontroller= require('./usercontroller');
 
 app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
@@ -27,6 +29,6 @@ app.set('view engine', 'html');
 app.listen(3000, function() {
     console.log('listening on 3000')
   })
-  
- app.use('/',usercontroller);
+//app.use('/',logincontroller);
+app.use('/',usercontroller);
 module.exports = {app};

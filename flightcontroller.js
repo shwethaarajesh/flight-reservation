@@ -26,32 +26,4 @@ app.use('/',reschedulecontroller);
 app.get('/options',(req,res,html)=>{
   res.render('options');
 })
-  app.get('/addflight',(req,res,html)=>{
-    sess=req.session;
-   console.log(sess.mob,'works');
-   res.render('insert-flight')
-})
-app.post('/newflight', (req, res) => {
-  console.log(req.body)
-  insertFlight(req,res);
-  res.redirect('/options');
-})
-function insertFlight(req,res){
-  var nf = new flight();
-
-  nf.name=req.body.name;
-  nf.flightid=req.body.fid;
-  nf.seats= req.body.seats;
-  nf.rows=req.body.rows;
-  nf.from= req.body.from;
-  nf.to=req.body.to;
-  nf.save((err,doc)=> {
-      if(!err)
-          console.log(' Flight has been inserted successfully')
-      else
-          console.log('Error during flight insertion '+err);
-  }
-  );
-}
-
   module.exports = app;

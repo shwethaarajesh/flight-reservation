@@ -8,6 +8,8 @@ const bodyparser = require('body-parser');
 
 const session = require('express-session');
 var flightcontroller= require('./flightcontroller');
+
+var logincontroller= require('./logincontroller');
 flights= require('./modules/flight.model');
 bookflight=require('./modules/book.model');
 reservedflight=require('./modules/reserved.model');
@@ -64,6 +66,7 @@ function insertRecord(req,res){
     });
 }
 console.log('Hi');
+app.use('/',logincontroller);
 app.use('/',flightcontroller);
 
 module.exports = app;
